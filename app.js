@@ -2,7 +2,7 @@ require('dotenv').config();
 
 // Import connections
 const db = require('./config/mysql');
-// const redisClient = require('./config/redis');
+const redisClient = require('./config/redis');
 
 const express = require('express');
 const app = express();

@@ -14,6 +14,11 @@ router.get('/db', (req, res) => {
     });
 });
 
-
+const redisClient = require('../config/redis');
+router.get('/cache', async (req, res) => {
+  await redisClient.set('timestamp', new Date().toISOString());
+  const value = await redisClient.get('timestamp');
+  res.send(`Redis cached time: ${value}`);
+});
 
 module.exports = router;
