@@ -5,4 +5,15 @@ router.get('/', (req, res) => {
   res.send('Hello from Node.js app with MySQL and Redis!');
 });
 
+const db = require('../config/mysql');
+
+router.get('/db', (req, res) => {
+    db.query('SELECT NOW() AS now', (err, results) => {
+        if (err) return res.status(500).send('Database error');
+        res.send(`Database time: ${results[0].now}`);
+    });
+});
+
+
+
 module.exports = router;
