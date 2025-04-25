@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-statefulset
+  labels: 
+    app: mysqldb
+spec:
+  serviceName: "mysql-service"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysqldb
+  template:
+    metadata:
+      labels:
+        app: mysqldb
+    spec:
+      containers:
+      - name: mysqldb
+        image: mariadb:latest
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "mypassword"
+        - name: MYSQL_DATABASE
+          value: "nodejs"
+        - name: MYSQL_USER
+          value: "myuser"
+        - name: MYSQL_PASSWORD
+          value: "mypassword"
+  #       volumeMounts:
+  #       - name: mysql-pvc
+  #         mountPath: /var/lib/mysql
+  # volumeClaimTemplates:
+  # - metadata:
+  #     name: mysql-pvc
+  #   spec:
+  #     accessModes: ["ReadWriteOnce"]
+  #     resources:
+  #       requests:
+  #         storage: 10Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc
+spec:
+  ports:
+    - port: 3306
+      targetPort: 3306
+      protocol: TCP
+  clusterIP: None
+  selector:
+    app: mysqldb
+
