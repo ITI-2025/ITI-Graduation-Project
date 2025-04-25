@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-deployment
+  labels:
+    app: nodejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - name: nodejs
+        image: bfaheem/nodejs-app:latest
+        ports:
+        - containerPort: 3000
+          name: http
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        env:
+        - name: DB_HOST
+          value: "mysql-svc"
+        - name: MYSQL_USER
+          value: "myuser"
+        - name: MYSQL_PASSWORD
+          value: "mypassword"
+        - name: MYSQL_DATABASE
+          value: nodejs
+
+        - name: REDIS_HOST
+          value: "redis-svc"
+      imagePullSecrets:
+      - name: my-dockerhub-secret
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-svc
+  labels:
+    app: nodejs
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 3000
+      port: 3000
+      nodePort: 32000
+      protocol: TCP
+  selector:
+    app: nodejs
+
+
