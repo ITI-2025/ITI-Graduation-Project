@@ -7,6 +7,8 @@ variable "private_subnets" {
 }
 # variable "security_group_id" {
 #   type = string
-# }
+# } 
+
+
 
 
