@@ -58,45 +58,32 @@ resource "aws_iam_instance_profile" "bastion_profile" {
   role = aws_iam_role.bastion_role.name
 }
 
-#     resource "aws_iam_policy" "eks_admin_policy" {
-#   name        = "eks-bastion-admin-policy"
-#   description = "Full EKS + EC2 NodeGroup access for Bastion"
+resource "aws_iam_policy" "ecr_access_policy" {
+  name        = "BastionECRAccessPolicy"
+  description = "Allow Bastion host to access Amazon ECR"
+  policy      = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "ecr:GetAuthorizationToken",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage",
+          "ecr:PutImage",
+          "ecr:InitiateLayerUpload",
+          "ecr:UploadLayerPart",
+          "ecr:CompleteLayerUpload",
+          "ecr:DescribeRepositories",
+          "ecr:CreateRepository",
+          "ecr:ListImages",
+          "ecr:DeleteRepository",
+          "ecr:BatchDeleteImage",
+        ],
+        Resource = "*"
+      }
+    ]
+  })
+}
 
-#   policy = jsonencode({
-#     Version = "2012-10-17",
-#     Statement = [
-#       {
-#         Effect = "Allow",
-#         Action = [
-#           "eks:Describe*",
-#           "eks:List*",
-#           "eks:AccessKubernetesApi",
-#           "eks:UpdateNodegroupConfig",
-#           "eks:UpdateClusterConfig",
-#           "autoscaling:Describe*",
-#           "autoscaling:UpdateAutoScalingGroup",
-#           "ec2:DescribeInstances",
-#           "ec2:DescribeTags",
-#           "ec2:DescribeSecurityGroups",
-#           "ec2:DescribeSubnets",
-#           "ec2:DescribeNetworkInterfaces",
-#           "eks:CreateNodegroup"  
-#         ],
-#         Resource = "*"
-#       }
-#     ]
-#   })
-# }
-
-
-
-
-# resource "aws_iam_role_policy_attachment" "attach_policy" {
-#   role       = aws_iam_role.bastion_role.name
-#   policy_arn = aws_iam_policy.eks_admin_policy.arn
-# }
-
-# resource "aws_iam_instance_profile" "bastion_profile" {
-#   name = "eks-bastion-profile"
-#   role = aws_iam_role.bastion_role.name
-# }
