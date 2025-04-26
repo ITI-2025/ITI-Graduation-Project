@@ -4,8 +4,6 @@ resource "aws_instance" "bastion_host" {
   instance_type = var.instance_type
   subnet_id     = var.subnet_id
   key_name      = var.key_name
-  # vpc_security_group_ids = [var.security_group_ids]
-  # security_groups = [aws_security_group.bastion_sg.name]
   vpc_security_group_ids = [aws_security_group.bastion_sg.id]
   user_data = var.user_data
   tags = {
