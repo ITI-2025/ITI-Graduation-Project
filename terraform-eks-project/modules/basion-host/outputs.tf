@@ -26,3 +26,7 @@ output "instance_id" {
 output "private_ip" {
   value = aws_instance.bastion_host.private_ip
 }
+output "public_ip" {
+  value = aws_instance.bastion_host.public_ip
+}
+

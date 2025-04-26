@@ -73,8 +73,8 @@ module "ec2_instance" {
   source = "./modules/basion-host"
   ami_id = "ami-0ff8a91507f77f867"  
   instance_type     = "t2.micro"
-  # subnet_id         = module.vpc.public_subnet_ids[0]
-   subnet_id         = module.vpc.private_subnet_ids[0]
+  subnet_id         = module.vpc.public_subnet_ids[0]
+  #  subnet_id         = module.vpc.private_subnet_ids[0]
    vpc_id           = module.vpc.vpc_id
   key_name          = "basion-key-2"
   # security_group_ids = module.vpc.basion_sg
