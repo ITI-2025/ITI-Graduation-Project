@@ -1,30 +1,63 @@
 #!/bin/bash
 
+# Update packages
 yum update -y
 
+# Install unzip
+yum install -y unzip
+
+# Install AWS CLI v2
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
 aws --version
 
-
-
+# Install kubectl (latest stable version)
 curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-# curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.0/2024-03-06/bin/linux/amd64/kubectl
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 kubectl version --client
 
+# Install Helm 3
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 helm version
 
-
+# Add Jenkins Helm Repo
 helm repo add jenkins https://charts.jenkins.io
-helm repo54.242.227.216/32 update
-kubectl create namespace jenkins || echo "Namespace already exists"
-helm install jenkins jenkins/jenkins -n jenkins
+
+# Update Helm Repos
+helm repo update
 
 
+
+
+
+# #!/bin/bash
+
+# yum update -y
+
+# curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+# unzip awscliv2.zip
+# sudo ./aws/install
+# aws --version
+
+
+
+# curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+# # curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.0/2024-03-06/bin/linux/amd64/kubectl
+# chmod +x kubectl
+# sudo mv kubectl /usr/local/bin/
+# kubectl version --client
+
+# curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+# helm version
+
+# helm repo add jenkins https://charts.jenkins.io
+# helm repo54.242.227.216/32 update
+
+
+# kubectl create namespace jenkins || echo "Namespace already exists"
+# helm install jenkins jenkins/jenkins -n jenkins
 
 
 # echo "Fetching Jenkins Admin Password:"

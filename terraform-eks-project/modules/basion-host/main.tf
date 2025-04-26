@@ -51,11 +51,16 @@ resource "aws_iam_role" "bastion_role" {
 }
 resource "aws_iam_role_policy_attachment" "bastion_eks_access" {
   role       = aws_iam_role.bastion_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterAccessPolicy"
+  # policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterAccessPolicy"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
 resource "aws_iam_instance_profile" "bastion_profile" {
   name = "bastion-profile"
   role = aws_iam_role.bastion_role.name
+}
+resource "aws_iam_role_policy_attachment" "bastion_ecr_policy_attach" {
+  role       = aws_iam_role.bastion_role.name
+  policy_arn = aws_iam_policy.ecr_access_policy.arn
 }
 
 resource "aws_iam_policy" "ecr_access_policy" {
