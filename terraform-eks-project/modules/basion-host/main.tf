@@ -9,7 +9,8 @@ resource "aws_instance" "bastion_host" {
   tags = {
     Name = var.name
   }
-    # iam_instance_profile = aws_iam_instance_profile.bastion_profile.name 
+  iam_instance_profile = aws_iam_instance_profile.bastion_profile.name
+
 }
 
 resource "aws_security_group" "bastion_sg" {
@@ -34,10 +35,28 @@ resource "aws_security_group" "bastion_sg" {
     Name = "bastion_sg"
   }
 }
+resource "aws_iam_role" "bastion_role" {
+  name = "bastion-role"
 
-
-
-
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      }
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
+resource "aws_iam_role_policy_attachment" "bastion_eks_access" {
+  role       = aws_iam_role.bastion_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterAccessPolicy"
+}
+resource "aws_iam_instance_profile" "bastion_profile" {
+  name = "bastion-profile"
+  role = aws_iam_role.bastion_role.name
+}
 
 #     resource "aws_iam_policy" "eks_admin_policy" {
 #   name        = "eks-bastion-admin-policy"

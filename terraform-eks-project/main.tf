@@ -5,8 +5,6 @@ module "vpc" {
   private_subnets = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 }
 
-
-
 resource "aws_security_group" "eks_api_sg" {
   name        = "eks-api-sg"
   description = "Allow Bastion Host to access EKS API"
@@ -32,7 +30,6 @@ resource "aws_security_group" "eks_api_sg" {
 }
 module "my-eks" {
   source  = "terraform-aws-modules/eks/aws"
-  # version = "~> 20.31"
    version = "19.0.0" 
   enable_irsa = true
   cluster_name    = "my-eks-cluster"
@@ -46,8 +43,6 @@ module "my-eks" {
   tags = {
     Name = "my-eks-cluster"
   } 
-
-
  eks_managed_node_groups = {
    example = {
 
@@ -58,11 +53,9 @@ module "my-eks" {
      max_size       = 3
 
      desired_size   = 2
-
    }
  }
 }
-
 module "ec2_instance" {
   source = "./modules/basion-host"
   ami_id = "ami-0ff8a91507f77f867"  
