@@ -75,7 +75,7 @@ app.get('/', async (req, res) => {
     // Check Redis cache
     const cachedCount = await redisClient.get('visit_count');
     if (cachedCount) {
-      return res.send(`Hello World from ITI 44! Page visits (cached): ${cachedCount}`);
+      return res.send(`hello world! Page visits (cached): ${cachedCount}`);
     }
 
     // Fetch from MySQL
