@@ -4,7 +4,7 @@ metadata:
   name: nodejs-app
   namespace: default
   annotations:
-    argocd-image-updater.argoproj.io/image-list: nodejs-app=9421-1477-0456.dkr.ecr.eu-central-1.amazonaws.com/nodejs-app
+    argocd-image-updater.argoproj.io/image-list: nodejs-app=942114770456.dkr.ecr.eu-central-1.amazonaws.com/nodejs-app
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/git-branch: node-js-app
 spec:
