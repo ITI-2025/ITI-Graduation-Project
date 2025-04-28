@@ -1,17 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nodejs-app
+  name: my-app
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/ITI-2025/ITI-Graduation-Project'
-    targetRevision: node-js-app
-    path: nodejs-app-chart  # Point to your Helm chart folder
-    helm:
-      valueFiles:
-      - values.yaml
+    targetRevision: node-js-app  ## change in production to main  
+    path: k8s-manifests
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: default
