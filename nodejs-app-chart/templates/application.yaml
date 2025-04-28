@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/ITI-2025/ITI-Graduation-Project'
     targetRevision: node-js-app
-    path: nodejs-app-chart  # Point to your Helm chart folder
+    path: ../nodejs-app-chart  # Point to your Helm chart folder
     helm:
       valueFiles:
       - values.yaml
