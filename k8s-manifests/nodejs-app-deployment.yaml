@@ -8,7 +8,7 @@ metadata:
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/git-branch: node-js-app
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: nodejs-app
