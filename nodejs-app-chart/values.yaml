@@ -1,0 +1,10 @@
+app:
+  name: nodejs-app
+
+namespace: default
+
+replicaCount: 3
+
+image:
+  repository: 942114770456.dkr.ecr.eu-central-1.amazonaws.com/nodejs-app
+  tag: latest
