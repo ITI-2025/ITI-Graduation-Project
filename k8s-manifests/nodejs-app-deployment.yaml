@@ -4,7 +4,7 @@ metadata:
   name: nodejs-app
   namespace: default
   annotations:
-    argocd-image-updater.argoproj.io/image-list: nodejs-app=942114770456.dkr.ecr.eu-central-1.amazonaws.com/nodejs-app:v1
+    argocd-image-updater.argoproj.io/image-list: nodejs-app=942114770456.dkr.ecr.eu-central-1.amazonaws.com/nodejs-app
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/git-branch: node-js-app
 spec:
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: ahmedabo3lii/devops-capstone_app
+        image: ahmedabo3lii/devops-capstone_app:v1
         ports:
         - containerPort: 3000
         env:
