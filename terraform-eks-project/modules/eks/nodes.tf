@@ -100,6 +100,7 @@ resource "aws_eks_node_group" "nodes_general" {
   # Kubernetes vesion
   version = "1.30"
   depends_on = [
+    aws_eks_cluster.eks,
     aws_iam_role_policy_attachment.amazon_eks_worker_node_policy_general,
     aws_iam_role_policy_attachment.amazon_eks_cni_policy_general,
     aws_iam_role_policy_attachment.amazon_ec2_container_registry_read_only,
