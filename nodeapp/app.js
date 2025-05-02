@@ -91,7 +91,7 @@ app.get('/', async (req, res) => {
       // Cache the new count in Redis for 10 seconds
       await redisClient.setEx('visit_count', 10, count.toString());
 
-      res.send(`Test For The Demo! Page visits: ${count}`);
+      res.send(`Another Test For The Demo! Page visits: ${count}`);
     } finally {
       await connection.end();
     }
