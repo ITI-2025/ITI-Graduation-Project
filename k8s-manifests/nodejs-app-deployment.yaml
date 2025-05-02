@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: 481665092783.dkr.ecr.eu-central-1.amazonaws.com/nodejs-app:v2
+        image: 481665092783.dkr.ecr.eu-central-1.amazonaws.com/nodejs-app:v4
         ports:
         - containerPort: 3000
         env:
