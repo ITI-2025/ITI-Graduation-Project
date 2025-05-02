@@ -75,7 +75,7 @@ app.get('/', async (req, res) => {
     // Check Redis cache
     const cachedCount = await redisClient.get('visit_count');
     if (cachedCount) {
-      return res.send(`hello world! Page visits (cached): ${cachedCount}`);
+      return res.send(`hello summoner Welcome to the leauge of draven ! Page visits (cached): ${cachedCount}`);
     }
 
     // Fetch from MySQL
@@ -91,7 +91,7 @@ app.get('/', async (req, res) => {
       // Cache the new count in Redis for 10 seconds
       await redisClient.setEx('visit_count', 10, count.toString());
 
-      res.send(`Hello Test Final Rounddddd b2aaaaaa! Page visits: ${count}`);
+      res.send(`hello summoner Welcome to the leauge of draven ! Page visits: ${count}`);
     } finally {
       await connection.end();
     }
@@ -111,3 +111,6 @@ app.listen(port, async () => {
     process.exit(1);
   }
 });
+
+
+
