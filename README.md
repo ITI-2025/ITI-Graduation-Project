@@ -1,11 +1,8 @@
-.
-
-
 # Node.js Application Deployment on AWS EKS
 
 ## 🎯 Overview
 
-This project provisions and deploys a secure, production-grade CI/CD pipeline on AWS using:
+This project provisions and deploys a production-grade CI/CD pipeline on AWS using:
 
 - **Terraform** for infrastructure
 - **Jenkins** for CI
@@ -34,20 +31,22 @@ Helm v3
 bash
 Copy
 Edit
-git clone https://github.com/YOUR_USERNAME/nodejs-eks-devops-pipeline.git
-cd nodejs-eks-devops-pipeline
+> git clone https://github.com/ITI-2025/nodejs-app-config
+
+> cd nodejs-app-config
+
 2. Configure AWS & Terraform Variables
 3. Provision Infrastructure
-bash
-Copy
-Edit
-cd terraform
-terraform init
-terraform apply
+> cd terraform
+
+> terraform init
+
+> terraform apply
 4. Deploy Jenkins and ArgoCD
 
-# Use Helm to install Jenkins and ArgoCD into EKS
+#### Use Helm to install Jenkins and ArgoCD into EKS
 5. Trigger Pipeline via GitHub Push
+
 Jenkins builds Docker image and pushes to ECR.
 
 ArgoCD syncs manifests and deploys Node.js, MySQL, Redis.
@@ -58,8 +57,6 @@ Argo Image Updater monitors and updates image tags.
 Node.js App (GitHub Repo)
 
 MySQL and Redis pods
-
-NGINX Ingress + TLS (Cert-Manager)
 
 📹 YouTube Demo
 ▶️ Watch the Demo
