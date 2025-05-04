@@ -11,20 +11,19 @@ This project provisions and deploys a production-grade CI/CD pipeline on AWS usi
 - **Node.js**, **MySQL**, and **Redis** deployed in EKS
 
 ## 🌐 Architecture Diagram
-![Architecture Diagram](architecture-diagram.png)
+![alt text](image.png)
+![alt text](image-1.png)
+##  🚀 Prerequisites 
 
-## 📁 Project Structure
-<include directory tree> ```
-🚀 Prerequisites
-AWS CLI configured
+- AWS CLI configured
 
-Docker
+- Docker
 
-Terraform
+- Terraform
 
-kubectl
+- kubectl
 
-Helm v3
+- Helm v3
 
 🔧 Setup Instructions
 1. Clone the Repository
