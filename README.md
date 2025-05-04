@@ -13,6 +13,7 @@ This project provisions and deploys a production-grade CI/CD pipeline on AWS usi
 ## 🌐 Architecture Diagram
 ![alt text](image.png)
 ![alt text](image-1.png)
+![alt text](image-2.png)
 ##  🚀 Prerequisites 
 
 - AWS CLI configured
