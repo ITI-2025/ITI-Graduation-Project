@@ -1,42 +1,6 @@
 .
 
-📁 GitHub Repository Structure
-Repository Name: nodejs-eks-devops-pipeline
 
-graphql
-Copy
-Edit
-nodejs-eks-devops-pipeline/
-│
-├── terraform/                    # Infrastructure as Code: VPC, EKS, IAM
-│   ├── vpc/                      # Modular VPC setup
-│   ├── eks/                      # EKS cluster and node group
-│   ├── iam/                      # IAM roles and policies
-│   └── variables.tf             # Terraform variables
-│
-├── jenkins/                     # Jenkins pipeline definitions
-│   ├── Jenkinsfile              # CI pipeline script
-│   └── helm-values.yaml         # Jenkins Helm config
-│
-├── argocd/                      # ArgoCD + Argo Image Updater
-│   ├── applications.yaml        # ArgoCD App manifests
-│   ├── image-updater-config.yaml
-│
-├── manifests/                   # Helm/Kustomize manifests for K8s
-│   ├── nodejs/                  # Node.js deployment & service
-│   ├── mysql/                   # MySQL StatefulSet & service
-│   ├── redis/                   # Redis deployment
-│   └── ingress/                 # Ingress & TLS via cert-manager
-│
-├── Dockerfile                   # Docker image for Node.js app
-├── README.md                    # Project documentation
-└── architecture-diagram.png     # Optional: Add your system architecture image
-📖 README.md Highlights
-You can use this as your README structure:
-
-markdown
-Copy
-Edit
 # Node.js Application Deployment on AWS EKS
 
 ## 🎯 Overview
