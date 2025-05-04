@@ -1,133 +1,122 @@
-# 🚀 Node.js Application Deployment on AWS EKS (CI/CD with Terraform, Jenkins, ArgoCD)
+.
 
-This project provisions and deploys a secure, production-grade CI/CD pipeline on AWS for a Node.js application using the following tools:
+📁 GitHub Repository Structure
+Repository Name: nodejs-eks-devops-pipeline
 
-- 🛠 **Terraform** for infrastructure provisioning  
-- ⚙️ **Jenkins** for Continuous Integration (CI)  
-- 🔄 **ArgoCD + Argo Image Updater** for Continuous Deployment (CD)  
-- 📦 **Helm** for Kubernetes resource management  
-- 🌐 **Node.js App** deployed with **MySQL** and **Redis**  
-- 🔒 **Cert-Manager + NGINX Ingress** for HTTPS
-
----
-
-## 🌐 Architecture Diagram
-
-> ![Architecture](architecture-diagram.png)  
-> *(You can add your diagram here)*
-
----
-
-## 📁 Project Structure
-
-nodejs-eks-devops-pipeline/
-│
-├── terraform/ # Modular Terraform code for VPC, EKS, IAM
-│ ├── vpc/
-│ ├── eks/
-│ ├── iam/
-│ └── variables.tf
-│
-├── jenkins/ # Jenkins pipeline and Helm values
-│ ├── Jenkinsfile
-│ └── helm-values.yaml
-│
-├── argocd/ # ArgoCD & Argo Image Updater manifests
-│ ├── applications.yaml
-│ └── image-updater-config.yaml
-│
-├── manifests/ # Kubernetes Helm/Kustomize manifests
-│ ├── nodejs/
-│ ├── mysql/
-│ ├── redis/
-│ └── ingress/
-│
-├── Dockerfile # Docker image for Node.js app
-├── README.md # This documentation
-└── architecture-diagram.png # System architecture image
-
-yaml
+graphql
 Copy
 Edit
+nodejs-eks-devops-pipeline/
+│
+├── terraform/                    # Infrastructure as Code: VPC, EKS, IAM
+│   ├── vpc/                      # Modular VPC setup
+│   ├── eks/                      # EKS cluster and node group
+│   ├── iam/                      # IAM roles and policies
+│   └── variables.tf             # Terraform variables
+│
+├── jenkins/                     # Jenkins pipeline definitions
+│   ├── Jenkinsfile              # CI pipeline script
+│   └── helm-values.yaml         # Jenkins Helm config
+│
+├── argocd/                      # ArgoCD + Argo Image Updater
+│   ├── applications.yaml        # ArgoCD App manifests
+│   ├── image-updater-config.yaml
+│
+├── manifests/                   # Helm/Kustomize manifests for K8s
+│   ├── nodejs/                  # Node.js deployment & service
+│   ├── mysql/                   # MySQL StatefulSet & service
+│   ├── redis/                   # Redis deployment
+│   └── ingress/                 # Ingress & TLS via cert-manager
+│
+├── Dockerfile                   # Docker image for Node.js app
+├── README.md                    # Project documentation
+└── architecture-diagram.png     # Optional: Add your system architecture image
+📖 README.md Highlights
+You can use this as your README structure:
 
----
+markdown
+Copy
+Edit
+# Node.js Application Deployment on AWS EKS
 
-## 🧰 Prerequisites
+## 🎯 Overview
 
-Ensure you have the following tools installed and configured:
+This project provisions and deploys a secure, production-grade CI/CD pipeline on AWS using:
 
-- ✅ AWS CLI (configured with admin access)
-- ✅ Docker
-- ✅ Terraform
-- ✅ `kubectl`
-- ✅ Helm v3
+- **Terraform** for infrastructure
+- **Jenkins** for CI
+- **ArgoCD + Argo Image Updater** for CD (GitOps)
+- **Helm** for K8s resource management
+- **Node.js**, **MySQL**, and **Redis** deployed in EKS
 
----
+## 🌐 Architecture Diagram
+![Architecture Diagram](architecture-diagram.png)
 
-## 🚀 Setup Instructions
+## 📁 Project Structure
+<include directory tree> ```
+🚀 Prerequisites
+AWS CLI configured
 
-### 1️⃣ Clone the Repository
+Docker
 
-```bash
+Terraform
+
+kubectl
+
+Helm v3
+
+🔧 Setup Instructions
+1. Clone the Repository
+bash
+Copy
+Edit
 git clone https://github.com/YOUR_USERNAME/nodejs-eks-devops-pipeline.git
 cd nodejs-eks-devops-pipeline
-2️⃣ Configure AWS & Terraform Variables
-Update the terraform/variables.tf and terraform.tfvars as needed (AWS region, VPC CIDRs, etc.).
-
-3️⃣ Provision Infrastructure
+2. Configure AWS & Terraform Variables
+3. Provision Infrastructure
 bash
 Copy
 Edit
 cd terraform
 terraform init
 terraform apply
-This will:
+4. Deploy Jenkins and ArgoCD
+bash
+Copy
+Edit
+# Use Helm to install Jenkins and ArgoCD into EKS
+5. Trigger Pipeline via GitHub Push
+Jenkins builds Docker image and pushes to ECR.
 
-Create a VPC (3 AZs, public/private subnets)
+ArgoCD syncs manifests and deploys Node.js, MySQL, Redis.
 
-Set up EKS cluster and private node groups
-
-Configure NAT Gateway, Internet Gateway, and route tables
-
-Create required IAM roles and policies
-
-⚙️ CI/CD Pipeline
-CI with Jenkins
-Jenkins installed via Helm in the EKS cluster
-
-Triggered on push to GitHub
-
-Jenkinsfile steps:
-
-Clone Node.js app repository
-
-Build and tag Docker image
-
-Push image to Amazon ECR
-
-CD with ArgoCD + Argo Image Updater
-ArgoCD syncs K8s manifests from GitHub
-
-Argo Image Updater watches ECR and updates image tags
-
-Triggers Git commit → ArgoCD syncs → App updated (GitOps flow)
+Argo Image Updater monitors and updates image tags.
 
 🌐 Application Stack
-Component	Description
-Node.js	Web app (from this repo)
-MySQL	Pod with persistent storage
-Redis	Pod for caching
-NGINX	Ingress controller
-CertMgr	TLS via DNS (Let's Encrypt)
+Node.js App (GitHub Repo)
 
-All configurations externalized using environment variables managed securely in Kubernetes.
+MySQL and Redis pods
 
-🌐 Ingress and HTTPS
-NGINX Ingress Controller is installed via Helm.
+NGINX Ingress + TLS (Cert-Manager)
 
-Cert-Manager configured for automatic Let's Encrypt TLS.
+📹 YouTube Demo
+▶️ Watch the Demo
 
-The app is accessible via a secure HTTPS endpoint.
+markdown
+Copy
+Edit
 
-🎥 YouTube Demo
-▶️ Watch the Full Demo Here
+---
+
+### 🎬 YouTube Video Guide
+
+**Title**: *Deploy Node.js App with CI/CD on AWS EKS using Terraform, Jenkins & ArgoCD*
+
+**Sections to Cover**:
+1. **Intro** – What this project is and what tools are used
+2. **Architecture Overview** – Use the diagram
+3. **Infrastructure Setup** – Terraform apply walkthrough
+4. **CI/CD Pipeline** – Show Jenkins & ArgoCD in action
+5. **App Deployment** – Show the running app with Ingress + HTTPS
+6. **Conclusion** – GitHub repo, link in description
+
