@@ -45,9 +45,7 @@ cd terraform
 terraform init
 terraform apply
 4. Deploy Jenkins and ArgoCD
-bash
-Copy
-Edit
+
 # Use Helm to install Jenkins and ArgoCD into EKS
 5. Trigger Pipeline via GitHub Push
 Jenkins builds Docker image and pushes to ECR.
